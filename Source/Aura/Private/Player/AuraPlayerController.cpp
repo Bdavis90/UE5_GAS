@@ -5,6 +5,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "InputActionValue.h"
+#include "Interaction/EnemyInterface.h"
 #include "Kismet/GameplayStatics.h"
 
 AAuraPlayerController::AAuraPlayerController()
@@ -34,6 +35,40 @@ void AAuraPlayerController::BeginPlay()
 	SetInputMode(InputModeData);
 }
 
+void AAuraPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+
+	CursorTrace();
+}
+
+void AAuraPlayerController::CursorTrace()
+{
+	FHitResult CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+
+	if (CursorHit.bBlockingHit)
+	{
+		LastActor = CurrentActor;
+		CurrentActor = Cast<IEnemyInterface>(CursorHit.GetActor());
+
+		if (CurrentActor != LastActor)
+		{
+			if (LastActor != nullptr)
+			{
+				LastActor->UnHighlightActor();
+			}
+
+			if(CurrentActor != nullptr)
+			{
+				CurrentActor->HighlightActor();
+			}
+		}
+
+
+	}
+}
+
 void AAuraPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
@@ -42,7 +77,7 @@ void AAuraPlayerController::SetupInputComponent()
 
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 
-	
+
 }
 
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
