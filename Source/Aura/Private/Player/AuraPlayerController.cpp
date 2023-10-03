@@ -21,9 +21,11 @@ void AAuraPlayerController::BeginPlay()
 
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 
-	check(Subsystem);
+	if(Subsystem)
+	{
+		Subsystem->AddMappingContext(AuraContext, 0);
+	}
 
-	Subsystem->AddMappingContext(AuraContext, 0);
 
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;;
@@ -89,7 +91,6 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 
 	if (APawn* ControlledPawn = GetPawn<APawn>())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("X: %f  Y: %f"), AxisVector.X, AxisVector.Y);
 		ControlledPawn->AddMovementInput(ForwardDirection, AxisVector.Y);
 		ControlledPawn->AddMovementInput(RightDirection, AxisVector.X);
 	}

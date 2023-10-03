@@ -30,7 +30,7 @@ void AAuraEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent,
 	{
 		const UAuraAttributeSet* AuraAttributeSet = Cast<UAuraAttributeSet>( ASCInterface->GetAbilitySystemComponent()->GetAttributeSet(UAuraAttributeSet::StaticClass()));
 
-		// REMOVE. JUST FOR TESTING
+		//TODO: REMOVE! JUST FOR TESTING.
 		auto set = const_cast<UAuraAttributeSet*>(AuraAttributeSet);
 		set->SetHealth(AuraAttributeSet->GetHealth() + 25.f);
 		Destroy();
