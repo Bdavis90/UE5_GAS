@@ -86,8 +86,8 @@ void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 
 		if (!IsValid(TargetASC)) return;
 
-		TArray<FActiveGameplayEffectHandle> HandlesToRemove;
-		for (auto HandlePair : ActiveEffectHandles)
+		/*TArray<FActiveGameplayEffectHandle> HandlesToRemove;
+		for (auto HandlePair : ActiveEffectHandles) 
 		{
 			if(HandlePair.Value == TargetASC)
 			{
@@ -99,7 +99,11 @@ void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 		for (auto& Handle : HandlesToRemove)
 		{
 			ActiveEffectHandles.FindAndRemoveChecked(Handle);
-		}
+		}*/
+
+		const FActiveGameplayEffectHandle* ActiveEffectHandle = ActiveEffectHandles.FindKey(TargetASC);
+		TargetASC->RemoveActiveGameplayEffect(*ActiveEffectHandle, 1);
+		ActiveEffectHandles.FindAndRemoveChecked(*ActiveEffectHandle);
 	}
 }
 
