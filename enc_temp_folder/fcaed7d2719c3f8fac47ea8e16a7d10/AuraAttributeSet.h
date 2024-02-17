@@ -84,23 +84,6 @@ public:
     FGameplayAttributeData MaxMana;
     ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxMana)
 
-
-    UPROPERTY(BlueprintReadOnly, Category = "Primary Attributes", ReplicatedUsing = OnRep_Strength)
-    FGameplayAttributeData Strength;
-    ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Strength)
-
-    UPROPERTY(BlueprintReadOnly, Category = "Primary Attributes", ReplicatedUsing = OnRep_Intelligence)
-    FGameplayAttributeData Intelligence;
-    ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Intelligence)
-
-    UPROPERTY(BlueprintReadOnly, Category = "Primary Attributes", ReplicatedUsing = OnRep_Resillence)
-    FGameplayAttributeData Resillence;
-    ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Resillence)
-
-    UPROPERTY(BlueprintReadOnly, Category = "Primary Attributes", ReplicatedUsing = OnRep_Vigor)
-    FGameplayAttributeData Vigor;
-    ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Vigor)
-
     UFUNCTION()
     void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
 
@@ -112,19 +95,6 @@ public:
 
     UFUNCTION()
     void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const;
-
-
-    UFUNCTION()
-    void OnRep_Strength(const FGameplayAttributeData& OldStrength) const;
-
-    UFUNCTION()
-    void OnRep_Intelligence(const FGameplayAttributeData& OldIntelligence) const;
-
-    UFUNCTION()
-    void OnRep_Resillence(const FGameplayAttributeData& OldResillence) const;
-
-    UFUNCTION()
-    void OnRep_Vigor(const FGameplayAttributeData& OldVigor) const;
 
 private:
     void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const;
