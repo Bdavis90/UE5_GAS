@@ -133,23 +133,12 @@ void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, 
 		return;
 	}
 
-	if (Attribute == GetMaxHealthAttribute())
-	{
-		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth());
-		return;
-	}
-
 	if(Attribute == GetManaAttribute())
 	{
 		NewValue = FMath::Clamp(NewValue, 0,GetMaxMana());
 		return;
 	}
 
-	if (Attribute == GetMaxManaAttribute())
-	{
-		NewValue = FMath::Clamp(NewValue, 0,GetMaxMana());
-		return;
-	}
 }
 
 
