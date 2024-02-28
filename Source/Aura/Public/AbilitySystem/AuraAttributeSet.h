@@ -97,9 +97,9 @@ public:
     ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Intelligence)
 
     // Increases Armor and Armor Penetration
-    UPROPERTY(BlueprintReadOnly, Category = "Primary Attributes", ReplicatedUsing = OnRep_Resillence)
-    FGameplayAttributeData Resillence;
-    ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Resillence)
+    UPROPERTY(BlueprintReadOnly, Category = "Primary Attributes", ReplicatedUsing = OnRep_Resilience)
+    FGameplayAttributeData Resilience;
+    ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Resilience)
 
     // Increases Health
     UPROPERTY(BlueprintReadOnly, Category = "Primary Attributes", ReplicatedUsing = OnRep_Vigor)
@@ -181,7 +181,7 @@ public:
     void OnRep_Intelligence(const FGameplayAttributeData& OldIntelligence) const;
 
     UFUNCTION()
-    void OnRep_Resillence(const FGameplayAttributeData& OldResillence) const;
+    void OnRep_Resilience(const FGameplayAttributeData& OldResilience) const;
 
     UFUNCTION()
     void OnRep_Vigor(const FGameplayAttributeData& OldVigor) const;
