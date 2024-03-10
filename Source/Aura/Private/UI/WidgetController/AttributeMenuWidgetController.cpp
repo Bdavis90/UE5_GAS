@@ -13,10 +13,21 @@ void UAttributeMenuWidgetController::BroadcastInitialValues()
 	UAuraAttributeSet* AS = CastChecked<UAuraAttributeSet>(AttributeSet);
 	check(AttributeInfo)
 
-	FAuraAttributeInfo Info = AttributeInfo->FindAttributeInfoForTag(
-		FAuraGameplayTags::Get().Attributes_Primary_Strength);
+	for(auto& Tag : AttributeInfo.Get()->AttributeInformation)
+	{
+		BroadcastAttributeInfo(Tag.AttributeTag);
+	}
 
-	Info.AttributeValue = AS->GetStrength();
+
+}
+
+void UAttributeMenuWidgetController::BroadcastAttributeInfo(const FGameplayTag& Tag) const
+{
+	// GEt info from DataAsset based on gameplay tag.
+	FAuraAttributeInfo Info = AttributeInfo->FindAttributeInfoForTag(Tag);
+	// Set the value.
+	Info.AttributeValue = Info.AttributeGetter.GetNumericValue(AttributeSet);
+	// Broadcast to the subscribers.
 	AttributeInfoDelegate.Broadcast(Info);
 }
 
