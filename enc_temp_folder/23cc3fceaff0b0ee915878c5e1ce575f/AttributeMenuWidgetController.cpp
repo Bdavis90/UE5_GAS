@@ -34,15 +34,5 @@ void UAttributeMenuWidgetController::BroadcastAttributeInfo(const FGameplayTag& 
 
 void UAttributeMenuWidgetController::BindCallbacksToDependencies()
 {
-	UAuraAttributeSet* AS = CastChecked<UAuraAttributeSet>(AttributeSet);
-	check(AttributeInfo)
-
-	for(auto& Tag : AttributeInfo.Get()->AttributeInformation)
-	{
-		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Tag.AttributeGetter).AddLambda([this, Tag](const FOnAttributeChangeData& Data)
-			{
-				BroadcastAttributeInfo(Tag.AttributeTag);
-			});
-	}
 
 }
