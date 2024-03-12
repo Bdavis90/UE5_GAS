@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Input/AuraInputConfig.h"
 #include "AuraPlayerController.generated.h"
 
 /**
@@ -43,6 +44,13 @@ private:
 
 	TScriptInterface<IEnemyInterface> CurrentActor;
 	TScriptInterface<IEnemyInterface> LastActor;
+
+	void AbilityInputTagPressed(FGameplayTag InputTag);
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	void AbilityInputTagHeld(FGameplayTag InputTag);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UAuraInputConfig> InputConfig;
 
 
 };
